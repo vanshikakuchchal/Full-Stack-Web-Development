@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Guess Game</title>
+        <style>
+            p{
+                font-size: 22px;
+            }
+            form{
+                font-size: 22px;
+            }
+            #ans{
+                background-color: red;
+            }
+            #rans{
+                background-color: green;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>
+            Number guessing game
+        </h1>
+        <p>We have selected a random number between 1 - 100. 
+            See if you<br>can guess it in 10 terms and fewer. We'll tell you
+            If your guess is<br>too high or too low.
+        </p>
+           Enter a guess: <input type="text" id="guessField" required>
+             <input type="submit" id="submitGuess" value="Submit guess">
+             <p id="demo"></p>
+             <p id="ans"></p>
+             <p id="rans"></p>
+             <p id="error"></p>
+             <p id="rst"></p>
+             
+             
+        
+        <script>
+            var y = Math.floor(Math.random() * 100 + 1);
+            var guess = 1;
+            var text=" ";
+            document.getElementById('submitGuess').onclick =function(){
+            var x = document.getElementById('guessField').value;
+            text=text+x;
+            text=text+" ";
+            if(guess>=10)
+            {
+                    document.getElementById("ans").innerHTML="GAME OVER";
+                    document.getElementById("error").innerHTML="";
+                    document.getElementById("rst").innerHTML="<input type=button value=Reset onClick=window.location.reload()>";
+
+            }
+            else if(x == y)
+            {    
+                    document.getElementById("demo").innerHTML = "Previous guesses: " + text;
+                    document.getElementById("ans").innerHTML="";
+                    document.getElementById("error").innerHTML="";
+                    document.getElementById("rans").innerHTML = "Congratulations! You got it right";
+                    document.getElementById("rst").innerHTML="<input type=button value=Start_New_Game onClick=window.location.reload()>";
+            }
+            else if(x > y)
+            {    
+                    document.getElementById("demo").innerHTML = "Previous guesses: " + text;
+                    document.getElementById("ans").innerHTML = "Wrong!";
+                    guess++;
+                    document.getElementById('error').innerHTML="Last guess was too high!";
+            }
+            else
+             {
+            document.getElementById("demo").innerHTML = "Previous guesses" + text;
+            document.getElementById("ans").innerHTML = "Wrong!";
+            guess++;
+            document.getElementById('error').innerHTML="Last guess was too low!";
+             }
+            }
+        </script>
+    </body>
+</html>
